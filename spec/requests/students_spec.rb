@@ -47,17 +47,18 @@ RSpec.describe "Students", type: :request do
       ])
     end
 
-    ## BONUS: un-comment out the code below to run the bonus test
+    # BONUS: un-comment out the code below to run the bonus test
 
-    # context 'with query params' do
-    #   it 'returns students whose first or last name matches the query' do
-    #     get '/students?name=kirby'
-
-    #     expect(response.body).to include_json([
-    #       { first_name: 'Vanessa', last_name: 'Kirby', grade: 85 }
-    #     ])
-    #   end
-    # end
+    context 'with query params' do
+      it 'returns students whose first or last name matches the query' do
+        get '/students', params: { q: 'John' }
+        expect(response).to have_http_status(:success)
+        expect(response.body).to include_json([
+          { first_name: 'Dwayne', last_name: 'Johnson', grade: 99 }
+        ])
+      end
+      
+    end
     
   end
   
